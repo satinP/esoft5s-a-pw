@@ -20,6 +20,10 @@
         padding: 0;
       }
 
+      * {
+        box-sizing: border-box;
+      }
+
       /* Estilos gerais */
 
       body {
@@ -29,8 +33,9 @@
       }
 
       main {
-        max-width: 80vw;
-        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       main > section {
@@ -39,12 +44,15 @@
 
       main section,
       main article {
+        width: 80vw;
         color: black;
         background-color: #fff;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
       }
 
       section h1,
@@ -72,8 +80,9 @@
       header {
         background-color: #007bff;
         color: #fff;
-        text-align: center;
         padding: 20px;
+        display: flex;
+        justify-content: center;
       }
 
       header h1 {
@@ -87,6 +96,7 @@
         display: flex;
         gap: 20px;
         justify-content: center;
+        flex-wrap: wrap;
         background-color: #343a40;
         padding: 10px;
         margin-bottom: 20px;
@@ -104,6 +114,12 @@
 
       /* Seções */
 
+      #info-squirtle img {
+        width: 150px;
+        height: 150px;
+        align-self: center;
+      }
+
       #curiosidades li::marker {
         content: '🔍';
       }
@@ -111,7 +127,12 @@
       #evolucao ul {
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
         list-style: none;
+      }
+
+      #evolucao img {
+        height: 150px;
       }
 
       #evolucao figcaption {
