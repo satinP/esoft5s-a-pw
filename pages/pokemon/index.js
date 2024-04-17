@@ -2,19 +2,28 @@ function changePageTitle(title) {
   document.title = title
 }
 
-function generateInfoSection(src, pokemonName) {
+function generateInfoSection(images, pokemonName) {
+  let position = 0
+
   const h2 = document.createElement('h2')
   h2.id = "info-pokemon-label"
   h2.textContent = `Informações sobre ${pokemonName}`
 
   const img = document.querySelector('img')
-  img.src = src
+  img.src = images[position]
   img.alt = `Imagem do pokemon ${pokemonName}`
 
   const section = document.querySelector('#info-pokemon')
 
   section.appendChild(h2)
   section.appendChild(img)
+
+  const imagesLength = images.length
+  img.addEventListener("click", () => {
+    position = (position + 1) % imagesLength
+    
+    img.src = images[position]
+  })
 }
 
 async function getPokemonData(name) {
@@ -30,7 +39,10 @@ async function getPokemonData(name) {
 
     const jsonData = await data.json()
 
-    generateInfoSection(jsonData.sprites.front_default, name)
+    const spritesArray = Object.values(jsonData.sprites)
+    const pokemonImgArray = spritesArray.filter((item) => typeof item === "string")
+
+    generateInfoSection(pokemonImgArray, name)
   } catch (error) {
     console.error(error)
   }
